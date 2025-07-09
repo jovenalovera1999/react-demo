@@ -1,40 +1,101 @@
 import { useState } from "react";
+import FloatingLabelInput from "./components/input/FloatingLabelInput";
+import Button from "./components/button/Button";
 
 const App = () => {
-  const [count, setCount] = useState(0);
-  const [firstName, setFirstName] = useState("John");
+  const [firstName, setFirstName] = useState("");
+  const [middleName, setMiddleName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [suffixName, setSuffixName] = useState("");
+  const [birthDate, setBirthDate] = useState("");
+  const [password, setPassword] = useState("");
 
-  const handleIncrement = () => {
-    setCount(count + 1);
-  };
-
-  const handleClick = () => {
-    setFirstName("James");
+  const handleClearAll = () => {
+    setFirstName("");
+    setMiddleName("");
+    setLastName("");
+    setSuffixName("");
+    setBirthDate("");
+    setPassword("");
   };
 
   return (
     <>
-      <h1>This is first time using React</h1>
+      <div className="mt-4 mb-4">
+        <FloatingLabelInput
+          label="First Name"
+          type="text"
+          name="first_name"
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+          autoFocus
+        />
+        <span className="text-black">First Name: {firstName}</span>
+      </div>
 
-      <p className="text-red-600">Hello World</p>
+      <div className="mb-4">
+        <FloatingLabelInput
+          label="Middle Name"
+          type="text"
+          name="middle_name"
+          value={middleName}
+          onChange={(e) => setMiddleName(e.target.value)}
+        />
+        <span className="text-black">Middle Name: {middleName}</span>
+      </div>
 
-      <button
-        type="button"
-        className="bg-blue-600 text-white rounded-lg p-2 hover:bg-blue-700 cursor-pointer"
-        onClick={handleIncrement}
-      >
-        Click Me! {count}
-      </button>
+      <div className="mb-4">
+        <FloatingLabelInput
+          label="Last Name"
+          type="text"
+          name="last_name"
+          value={lastName}
+          onChange={(e) => setLastName(e.target.value)}
+        />
+        <span className="text-black">Last Name: {lastName}</span>
+      </div>
 
-      <div>
-        <button
+      <div className="mb-4">
+        <FloatingLabelInput
+          label="Suffix Name"
+          type="text"
+          name="suffix_name"
+          value={suffixName}
+          onChange={(e) => setSuffixName(e.target.value)}
+        />
+        <span className="text-black">Suffix Name: {suffixName}</span>
+      </div>
+
+      <div className="mb-4">
+        <FloatingLabelInput
+          label="Birth Date"
+          type="date"
+          name="birth_date"
+          value={birthDate}
+          onChange={(e) => setBirthDate(e.target.value)}
+        />
+        <span className="text-black">Birth Date: {birthDate}</span>
+      </div>
+
+      <div className="mb-4">
+        <FloatingLabelInput
+          label="Password"
+          type="password"
+          name="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <span className="text-black">Password: {password}</span>
+      </div>
+
+      <div className="flex gap-4 m-4">
+        <Button
           type="button"
-          className="bg-red-600 text-white p-2 rounded-lg shadow-lg hover:bg-white hover:text-black cursor-pointer"
-          onClick={handleClick}
-        >
-          Click Me!
-        </button>
-        <h1>{firstName}</h1>
+          label="Clear"
+          newClassName="bg-white text-black p-2 border border-gray-300 hover:bg-gray-100 cursor-pointer"
+          onClick={handleClearAll}
+        />
+        <Button type="submit" label="Save Person" className="w-full" />
       </div>
     </>
   );
