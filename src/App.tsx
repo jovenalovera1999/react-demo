@@ -78,6 +78,7 @@ const App = () => {
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
           autoFocus
+          required
         />
         <span className="text-black">First Name: {firstName}</span>
       </div>
@@ -100,6 +101,7 @@ const App = () => {
           name="last_name"
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
+          required
         />
         <span className="text-black">Last Name: {lastName}</span>
       </div>
@@ -132,6 +134,7 @@ const App = () => {
           name="gender"
           value={gender}
           onChange={(e) => setGender(e.target.value)}
+          required
         >
           {selectItems.map(({ value, text }) => (
             <option value={value}>{text}</option>
