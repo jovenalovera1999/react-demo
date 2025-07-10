@@ -2,6 +2,13 @@ import { useState } from "react";
 import FloatingLabelInput from "./components/input/FloatingLabelInput";
 import Button from "./components/button/Button";
 import FloatingLabelSelect from "./components/select/FloatingLabelSelect";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHeader,
+  TableRow,
+} from "./components/table";
 
 const App = () => {
   const [firstName, setFirstName] = useState("");
@@ -41,6 +48,24 @@ const App = () => {
       text: "Lesbian",
     },
     { value: "5", text: "Prefer Not to Say" },
+  ];
+
+  const tableItems = [
+    {
+      no: 1,
+      name: "Bolvider",
+      section: "BSCS 3A",
+    },
+    {
+      no: 2,
+      name: "John Doe",
+      section: "BSIT 3A",
+    },
+    {
+      no: 3,
+      name: "Maria Labo",
+      section: "BSIT 3B",
+    },
   ];
 
   return (
@@ -112,7 +137,7 @@ const App = () => {
             <option value={value}>{text}</option>
           ))}
         </FloatingLabelSelect>
-        <span className="text-black">Gender:</span>
+        <span className="text-black">Gender: {gender}</span>
       </div>
 
       <div className="mb-4">
@@ -126,7 +151,7 @@ const App = () => {
         <span className="text-black">Password: {password}</span>
       </div>
 
-      <div className="flex gap-4 m-4">
+      <div className="flex gap-4 m-4 mb-4">
         <Button
           type="button"
           label="Clear"
@@ -134,6 +159,28 @@ const App = () => {
           onClick={handleClearAll}
         />
         <Button type="submit" label="Save Person" className="w-full" />
+      </div>
+
+      <div>
+        <h1 className="mb-2">This is table at the bottom</h1>
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableCell isHeader>No.</TableCell>
+              <TableCell isHeader>Name</TableCell>
+              <TableCell isHeader>Section</TableCell>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {tableItems.map(({ no, name, section }) => (
+              <TableRow>
+                <TableCell>{no}</TableCell>
+                <TableCell>{name}</TableCell>
+                <TableCell>{section}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
       </div>
     </>
   );
