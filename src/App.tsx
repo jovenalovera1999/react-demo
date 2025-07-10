@@ -1,6 +1,7 @@
 import { useState } from "react";
 import FloatingLabelInput from "./components/input/FloatingLabelInput";
 import Button from "./components/button/Button";
+import FloatingLabelSelect from "./components/select/FloatingLabelSelect";
 
 const App = () => {
   const [firstName, setFirstName] = useState("");
@@ -8,6 +9,7 @@ const App = () => {
   const [lastName, setLastName] = useState("");
   const [suffixName, setSuffixName] = useState("");
   const [birthDate, setBirthDate] = useState("");
+  const [gender, setGender] = useState("");
   const [password, setPassword] = useState("");
 
   const handleClearAll = () => {
@@ -16,8 +18,30 @@ const App = () => {
     setLastName("");
     setSuffixName("");
     setBirthDate("");
+    setGender("");
     setPassword("");
   };
+
+  const selectItems = [
+    { value: "", text: "Select Gender" },
+    {
+      value: "1",
+      text: "Male",
+    },
+    {
+      value: "2",
+      text: "Female",
+    },
+    {
+      value: "3",
+      text: "Gay",
+    },
+    {
+      value: "4",
+      text: "Lesbian",
+    },
+    { value: "5", text: "Prefer Not to Say" },
+  ];
 
   return (
     <>
@@ -78,6 +102,20 @@ const App = () => {
       </div>
 
       <div className="mb-4">
+        <FloatingLabelSelect
+          label="Gender"
+          name="gender"
+          value={gender}
+          onChange={(e) => setGender(e.target.value)}
+        >
+          {selectItems.map(({ value, text }) => (
+            <option value={value}>{text}</option>
+          ))}
+        </FloatingLabelSelect>
+        <span className="text-black">Gender:</span>
+      </div>
+
+      <div className="mb-4">
         <FloatingLabelInput
           label="Password"
           type="password"
@@ -92,7 +130,7 @@ const App = () => {
         <Button
           type="button"
           label="Clear"
-          newClassName="bg-white text-black p-2 border border-gray-300 hover:bg-gray-100 cursor-pointer"
+          newClassName="bg-white text-black p-2 border border-gray-300 hover:bg-gray-100 cursor-pointer rounded-lg"
           onClick={handleClearAll}
         />
         <Button type="submit" label="Save Person" className="w-full" />
