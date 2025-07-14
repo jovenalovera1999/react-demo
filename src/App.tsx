@@ -1,3 +1,4 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import FloatingLabelInput from "./components/input/FloatingLabelInput";
 import Button from "./components/button/Button";
@@ -9,8 +10,9 @@ import {
   TableHeader,
   TableRow,
 } from "./components/table";
+import AppLayout from "./layout/AppLayout";
 
-const App = () => {
+const Contents = () => {
   const [firstName, setFirstName] = useState("");
   const [middleName, setMiddleName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -185,6 +187,20 @@ const App = () => {
           </TableBody>
         </Table>
       </div>
+    </>
+  );
+};
+
+const App = () => {
+  return (
+    <>
+      <Router>
+        <Routes>
+          <Route element={<AppLayout />}>
+            <Route index element={<Contents />} />
+          </Route>
+        </Routes>
+      </Router>
     </>
   );
 };
