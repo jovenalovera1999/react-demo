@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import AppHeader from "./AppHeader";
 import AppSidebar from "./AppSidebar";
 import { SidebarProvider } from "../context/SidebarContext";
+import { HeaderProvider } from "../context/HeaderContext";
 
 const LayoutContent = () => {
   return (
@@ -26,9 +27,11 @@ const LayoutContent = () => {
 const AppLayout = () => {
   return (
     <>
-      <SidebarProvider>
-        <LayoutContent />
-      </SidebarProvider>
+      <HeaderProvider>
+        <SidebarProvider>
+          <LayoutContent />
+        </SidebarProvider>
+      </HeaderProvider>
     </>
   );
 };
